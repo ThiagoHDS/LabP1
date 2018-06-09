@@ -922,13 +922,18 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						GetWindowText(haluno, cpf, 11);
 						GetWindowText(hsupervisor, idsup, 4);
 						
+						id2 = atoi(id);
+						cpf2 = atol(cpf);
+						idsup2 = atoi(idsup);
+						
 						if(strcmp(id, "") == 0|| strcmp(cpf, "") == 0 || strcmp(idsup, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
+						}else if(id2 == 0 || cpf2 == 0 || idsup2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros!", L"Aviso!", MB_OK | MB_ICONWARNING);
+						
+						
 						}else{
-							id2 = atoi(id);
-							cpf2 = atol(cpf);
-							idsup2 = atoi(idsup);
 							
 							for(i = 0; i < posAgendamento; i++){
 								if(agendamentos[i].codigo == id2){
@@ -1016,15 +1021,18 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 					case ATEN_CANCELAR_OK:{
 						char id[4];
 						GetWindowText(hid, id, 4);
+						int id2;
+						id2 = atoi(id);
 						
 						if(strcmp(id, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
+						}else if(id2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
 						}else{
 							
 							int i, j, achou = 0;
-						 	int id2;
-						 	id2 = atoi(id);
 						 	
 						 	for(i = 0; i < posAtendimento; i++){
 						 		if(id2 == atendimentos[i].codigoAtendimento){
@@ -1438,14 +1446,17 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 					case AGE_PROCURA_PAC_OK:{
 						int id2, i;
 						char id[3];
-						
+				
 						GetWindowText(hid, id, 3);
+						id2 = atoi(id);
 						
 						if(strcmp(id, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
+						}else if(id2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
 						}else{
-							id2 = atoi(id);
 							
 							for(i = 0; i < posPaciente; i++){
 								if(pacientes[i].id == id2){
@@ -1514,6 +1525,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						}else if(strcmp(areaLower, "fisioterapia") != 0 && strcmp(areaLower, "odontologia") != 0 && strcmp(areaLower, "psicologia") != 0){
 							MessageBoxW(hwnd, L"Area invalida! Entre com fisioterapia, odontologia ou psicologia!", L"Aviso!", MB_OK | MB_ICONWARNING);
 						
+						}else if(dia2 == 0 || mes2 == 0 || ano2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros nos campos da data!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
 						}else if(verificaData(dia2, mes2, ano2) == 1){
 							MessageBoxW(hwnd, L"Data invalida. Insira uma data valida!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
@@ -1551,15 +1565,18 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 					case AGE_CANCELA_OK:{
 						char id[4];
 						GetWindowText(hid, id, 4);
+						int id2;
+						id2 = atol(id);
 						
 						if(strcmp(id, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
+						}else if(id2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
 						}else{
 							
 							int i, j, achou = 0;
-						 	int id2;
-						 	id2 = atol(id);
 						 	
 						 	for(i = 0; i < posAgendamento; i++){
 						 		if(id2 == agendamentos[i].codigo){
@@ -1669,6 +1686,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						GetWindowText(hidade, idade, 3);
 						GetWindowText(hmatricula, matricula, 10);
 						
+						idade2 = atoi(idade);
+						cpf2 = atol(cpf);
+						matricula2 = atol(matricula);
+						
 						int i, contem = 0;	
 						for(i = 0; i < posAluno; i++){
 							cpf2 = atol(cpf);
@@ -1682,14 +1703,15 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						if(strcmp(nome, "") == 0 || strcmp(curso, "") == 0 || strcmp(cpf, "") == 0 || strcmp(idade, "") == 0 || strcmp(matricula, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 				
-						} else if(contem == 1){
+						}else if(idade2 == 0 || matricula2 == 0 || cpf2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros nos campos idade, cpf e matricula!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
+						}else if(contem == 1){
 							MessageBoxW(hwnd, L"Aluno ja cadastrado", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
 						}else{
 							
-							idade2 = atoi(idade);
-							cpf2 = atol(cpf);
-							matricula2 = atol(matricula);
+							
 						
 							alunos[posAluno] = cria_aluno(nome, idade2, matricula2, cpf2, curso);
 							posAluno++;
@@ -1728,12 +1750,18 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						long int cpf2;
 						
 						GetWindowText(hcpf, cpf, 11);
+						
+						cpf2 = atol(cpf);
+						
 						if(strcmp(cpf, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
 							
+						}else if(cpf2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
 						}else{
-							cpf2 = atol(cpf);
+							
 							
 							for(i = 0; i < posAluno; i++){
 								if(alunos[i].cpf == cpf2){
@@ -1774,6 +1802,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						GetWindowText(hmatricula, matricula, 10);
 						
 						cpf2 = atol(cpf);
+						idade2 = atoi(idade);
+						matricula2 = atol(matricula);
 						
 						int i, contem = 0;	
 						for(i = 0; i < posAluno; i++){							
@@ -1786,12 +1816,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						if(strcmp(nome, "") == 0 || strcmp(curso, "") == 0 || strcmp(cpf, "") == 0 || strcmp(idade, "") == 0 || strcmp(matricula, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 						
-						} else if(contem == 1){
+						}else if(cpf2 == 0 || matricula2 == 0 || idade2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros nos campos idade, cpf e matricula!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
+						}else if(contem == 1){
 							MessageBoxW(hwnd, L"Este CPF ja esta cadastrado!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
-						} else {
-							idade2 = atoi(idade);
-							matricula2 = atol(matricula);
+						}else {
 							
 							alunos[pos].cpf = cpf2;
 							strcpy(alunos[pos].nome, nome);
@@ -1817,15 +1848,20 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						
 					 case ALUNO_REMOVE_OK:{
 					 	char cpf[11];
+					 	long int cpf2;
+					 	
 					 	GetWindowText(hcpf, cpf, 11);
+						cpf2 = atol(cpf);
 					 	
 					 	if(strcmp(cpf, "") == 0){
 					 		MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 					 		
-						 } else {
+						 }else if(cpf2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
+						}else {
 						 	int i, j, achou = 0;
-						 	long int cpf2;
-						 	cpf2 = atol(cpf);
+						 	
 						 	
 						 	for(i = 0; i < posAluno; i++){
 						 		if(cpf2 == alunos[i].cpf){
@@ -1938,6 +1974,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						dia2 = atoi(dia);
 						mes2 = atoi(mes);
 						ano2 = atoi(ano);
+						cpf2 = atol(cpf);
 						
 						printf("soma %d\n", dia2 + mes2 + ano2);
 						
@@ -1950,20 +1987,22 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 							} 
 						}
 						
-						int aux = verificaData(dia2, mes2, ano2);
+						
 	
 						if(strcmp(nome, "") == 0 || strcmp(endereco, "") == 0 || strcmp(cpf, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 						
+						}else if(dia2 == 0 || mes2 == 0 || ano2 == 0 || cpf2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros nos campos da data e do cpf!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
 						}else if(contem == 1){
 							MessageBoxW(hwnd, L"Paciente ja cadastrado!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
-						}else if(aux == 1){
+						}else if(dia2 > 31 || mes2 > 12){
 							MessageBoxW(hwnd, L"Data invalida. Insira uma data valida!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
 						}else{
 							Data data = cria_data(dia2, mes2, ano2);
-							cpf2 = atol(cpf);
 							
 							pacientes[posPaciente] = cria_paciente(idPaciente, nome, data, cpf2, endereco);
 							posPaciente++;
@@ -1993,12 +2032,16 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						long int cpf2;
 						
 						GetWindowText(hcpf, cpf, 11);
+						cpf2 = atol(cpf);
+						
 						if(strcmp(cpf, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
 							
+						}else if(cpf2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
 						}else{
-							cpf2 = atol(cpf);
 							
 							for(i = 0; i < posPaciente; i++){
 								if(pacientes[i].cpf == cpf2){
@@ -2043,7 +2086,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						mes2 = atoi(mes);
 						ano2 = atoi(ano);
 						
-						int aux = verificaData(dia2, mes2, ano2);
+						
 					
 						int i, contem = 0;	
 						for(i = 0; i < posPaciente; i++){
@@ -2056,7 +2099,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						if(strcmp(nome, "") == 0 || strcmp(endereco, "") == 0 || strcmp(cpf, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
-						}else if(aux == 1){
+						}else if(dia2 == 0 || mes2 == 0 || ano2 == 0 || cpf2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros nos campos da data e do cpf!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
+						}else if(dia2 > 31 || mes2 > 12){
 							MessageBoxW(hwnd, L"Data invalida. Insira uma data valida!", L"Aviso!", MB_OK | MB_ICONWARNING);
 						
 						}else if(contem == 1){
@@ -2089,15 +2135,19 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 				
 					case PACIENTE_REMOVE_OK:{
 						char cpf[11];
+					 	long int cpf2;
+					 	
 					 	GetWindowText(hcpf, cpf, 11);
+						cpf2 = atol(cpf);
 					 	
 					 	if(strcmp(cpf, "") == 0){
 					 		MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 					 		
-						 } else {
+						 }else if(cpf2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
+						}else {
 						 	int i, j, achou = 0;
-						 	long int cpf2;
-						 	cpf2 = atol(cpf);
 						 	
 						 	for(i = 0; i < posPaciente; i++){
 						 		if(cpf2 == pacientes[i].cpf){
@@ -2213,12 +2263,14 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						if(strcmp(nome, "") == 0 || strcmp(curso, "") == 0 || strcmp(id, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
+						}else if(id2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros no campo ID!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
 						}else if(contem == 1){
 							MessageBoxW(hwnd, L"Supervisor ja cadastrado!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
 						} else{
 							
-							int id2 = atoi(id);
 							supervisores[posSupervisor] = cria_supervisor(idSupervisor, nome, curso, id2);
 							posSupervisor++;
 							idSupervisor++;
@@ -2243,16 +2295,21 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 				
 					case SUPERVISOR_PROCURAR_OK:{
 						int i;
-						char id[3];
+						char id[4];
 						int id2;
 						
-						GetWindowText(hid, id, 3);
+						GetWindowText(hid, id, 4);
+						id2 = atoi(id);
+						
 						if(strcmp(id, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
 							
+						}else if(id2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
 						}else{
-							id2 = atoi(id);
+							
 							
 							for(i = 0; i < posSupervisor; i++){
 								if(supervisores[i].id == id2){
@@ -2300,6 +2357,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 						if(strcmp(nome, "") == 0 || strcmp(curso, "") == 0 || strcmp(id, "") == 0){
 							MessageBoxW(hwnd, L"Preencha os campos em branco!", L"Aviso!", MB_OK | MB_ICONWARNING);
 							
+						}else if(id2 == 0){
+							MessageBoxW(hwnd, L"Digite apenas numeros no campo ID!", L"Aviso!", MB_OK | MB_ICONWARNING);
+		
 						}else if(contem  == 1){
 							MessageBoxW(hwnd, L"Este CPF ja esta cadastrado!", L"Aviso!", MB_OK | MB_ICONWARNING);	
 							
